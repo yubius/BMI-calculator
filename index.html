@@ -90,18 +90,18 @@
             document.getElementById('calculate-button').addEventListener('click', function() {
                 var weight = parseFloat(document.getElementById('weight-input').value);
                 var height = parseFloat(document.getElementById('height-input').value);
-
+        
                 var bmi = weight / (height ** 2);
-
+        
                 // 显示BMI值
                 document.getElementById('result-text').innerText = "你的BMI值为: " + bmi.toFixed(2);
-
+        
                 // 根据BMI值判断范围
                 if (bmi <= 18.5) {
                     document.getElementById('category-text').innerText = "此BMI值属于偏瘦范围";
-                } else if (18.5 < bmi <= 25) {
+                } else if (bmi < 25) { // 修改这里，添加一个单独的条件判断
                     document.getElementById('category-text').innerText = "此BMI值属于正常范围";
-                } else if (25 < bmi <= 30) {
+                } else if (bmi < 30) { // 修改这里，添加一个单独的条件判断
                     document.getElementById('category-text').innerText = "此BMI值属于偏胖范围";
                 } else {
                     document.getElementById('category-text').innerText = "此BMI值属于肥胖范围";
