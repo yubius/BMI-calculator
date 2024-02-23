@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://imgcdn.simsoft.top/1708603853-icon.png" sizes="192x192" />
+    <title>BMI体重指数计算器-布斯健康</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-image: url("https://api.paugram.com/bing");
+            background-size: cover;
+           /* filter: blur(3px); /* 添加亚克力（高斯模糊）效果 */
+            overflow: hidden; /* 防止内容滚动时显示背景图片之外的部分 */
+            position: relative; /* 为子元素添加绝对定位 */
+        }
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70%;
+            margin: 20vh auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            max-width: 120px;
+            height: auto;
+        }
+        #input-boxes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        #weight-input, #height-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #calculate-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #result {
+            font-size: 18px;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+        #result-text, #category-text {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <div class="blur-layer"></div>
+        
+        <!-- Logo -->
+        <a href="./web/i.html"><img class="logo" src="https://imgcdn.simsoft.top/1708603853-icon.png" alt="布斯语言工具箱Logo"></a>
+
+        <h1>布斯BMI计算器</h1>
+
+        <!-- 输入框与计算按钮 -->
+        <div id="input-boxes">
+            <input type="number" id="weight-input" placeholder="请输入您的体重（单位：kg）" required>
+            <input type="number" id="height-input" placeholder="请输入您的身高（单位：m）" required>
+            <button id="calculate-button">计算BMI值</button>
+        </div>
+
+        <!-- 结果显示区域 -->
+        <div id="result">
+            <span id="result-text"></span>
+            <br>
+            <span id="category-text"></span>
+        </div>
+
+        <!-- JavaScript部分 -->
+        <script>
+            document.getElementById('calculate-button').addEventListener('click', function() {
+                var weight = parseFloat(document.getElementById('weight-input').value);
+                var height = parseFloat(document.getElementById('height-input').value);
+
+                var bmi = weight / (height ** 2);
+
+                // 显示BMI值
+                document.getElementById('result-text').innerText = "你的BMI值为: " + bmi.toFixed(2);
+
+                // 根据BMI值判断范围
+                if (bmi <= 18.5) {
+                    document.getElementById('category-text').innerText = "此BMI值属于偏瘦范围";
+                } else if (18.5 < bmi <= 25) {
+                    document.getElementById('category-text').innerText = "此BMI值属于正常范围";
+                } else if (25 < bmi <= 30) {
+                    document.getElementById('category-text').innerText = "此BMI值属于偏胖范围";
+                } else {
+                    document.getElementById('category-text').innerText = "此BMI值属于肥胖范围";
+                }
+            });
+        </script>
+    </div>
+</body>
+<footer>
+    <p><a href="./web/i.html" target="_blank">我的主页</a> | <a href="./web/start.html" target="_blank">布斯起始页</a> | <a href="./web/bilibili.html" target="_blank">我的B站</a></p>
+</footer>
+</html>
